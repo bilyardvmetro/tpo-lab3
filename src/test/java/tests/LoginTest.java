@@ -1,5 +1,3 @@
-package tumblr.tests;
-
 import org.junit.jupiter.api.Test;
 import tumblr.base.BaseTest;
 import tumblr.pages.HomePage;
