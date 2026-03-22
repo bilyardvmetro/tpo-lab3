@@ -6,82 +6,65 @@ import org.openqa.selenium.WebDriver;
 
 public class LoginPage extends BasePage {
 
-    private final By usernameOrEmailField = By.xpath(
-            "//input[" +
-                    "@type='email' or " +
-                    "@type='text' or " +
-                    "contains(@autocomplete,'username') or " +
-                    "contains(translate(@name,'EMAILUSERNAME','emailusername'),'email') or " +
-                    "contains(translate(@name,'EMAILUSERNAME','emailusername'),'user') or " +
-                    "contains(translate(@id,'EMAILUSERNAME','emailusername'),'email') or " +
-                    "contains(translate(@id,'EMAILUSERNAME','emailusername'),'user') or " +
-                    "contains(translate(@placeholder,'EMAILUSERNAME','emailusername'),'email') or " +
-                    "contains(translate(@placeholder,'EMAILUSERNAME','emailusername'),'user') or " +
-                    "contains(translate(@aria-label,'EMAILUSERNAME','emailusername'),'email') or " +
-                    "contains(translate(@aria-label,'EMAILUSERNAME','emailusername'),'user')" +
-                    "]"
+    private final By emailStepContainer = By.xpath(
+            "//*[contains(@class,'m4lSb') and contains(@class,'email')]"
+    );
+
+    private final By passwordStepContainer = By.xpath(
+            "//*[contains(@class,'m4lSb') and contains(@class,'password')]"
+    );
+
+    private final By emailField = By.xpath(
+            "//input[@name='email' and @type='email']"
+    );
+
+    private final By nextButton = By.xpath(
+            "//button[@type='submit' and @aria-label='Далее']" +
+                    " | //button[@type='submit' and .//span[normalize-space()='Далее']]"
     );
 
     private final By passwordField = By.xpath(
-            "//input[" +
-                    "@type='password' or " +
-                    "contains(translate(@name,'PASSWORD','password'),'password') or " +
-                    "contains(translate(@id,'PASSWORD','password'),'password') or " +
-                    "contains(translate(@placeholder,'PASSWORD','password'),'password') or " +
-                    "contains(translate(@aria-label,'PASSWORD','password'),'password')" +
-                    "]"
+            "//input[@name='password' and @type='password']"
     );
 
-    private final By anyVisibleInput = By.xpath("//input[not(@type='hidden') and not(@disabled)]");
-
-    private final By nextOrLoginButton = By.xpath(
-            "//button[" +
-                    ".//span[normalize-space()='Next' or normalize-space()='Log In' or normalize-space()='Log in' or normalize-space()='Войти'] " +
-                    "or normalize-space()='Next' " +
-                    "or normalize-space()='Log In' " +
-                    "or normalize-space()='Log in' " +
-                    "or normalize-space()='Войти' " +
-                    "or normalize-space(@aria-label)='Войти' " +
-                    "or normalize-space(@aria-label)='Log In'" +
-                    "]"
+    private final By loginButton = By.xpath(
+            "//button[@type='submit' and @aria-label='Войти']" +
+                    " | //button[@type='submit' and .//span[normalize-space()='Войти']]"
     );
 
     public LoginPage(WebDriver driver) {
         super(driver);
     }
 
-    public boolean isLoaded() {
-        return isVisible(usernameOrEmailField)
-                || isVisible(passwordField)
-                || isVisible(anyVisibleInput)
-                || driver.getCurrentUrl().contains("login");
+    public boolean isEmailStepLoaded() {
+        return isVisible(emailStepContainer) && isVisible(emailField);
     }
 
-    public boolean hasUsernameOrEmailField() {
-        return isVisible(usernameOrEmailField);
+    public boolean isPasswordStepLoaded() {
+        return isVisible(passwordStepContainer) && isVisible(passwordField);
     }
 
-    public boolean hasPasswordField() {
-        return isVisible(passwordField);
+    public void enterEmail(String email) {
+        type(emailField, email);
     }
 
-    public boolean hasAnyInputField() {
-        return isVisible(anyVisibleInput);
+    public void submitEmailWithEnter() {
+        findVisible(emailField).sendKeys(Keys.ENTER);
     }
 
-    public void enterUsernameOrEmail(String value) {
-        type(usernameOrEmailField, value);
+    public void clickNext() {
+        click(nextButton);
     }
 
-    public void enterPassword(String value) {
-        type(passwordField, value);
+    public void enterPassword(String password) {
+        type(passwordField, password);
     }
 
-    public void clickNextOrLogin() {
-        click(nextOrLoginButton);
-    }
-
-    public void submitPassword() {
+    public void submitPasswordWithEnter() {
         findVisible(passwordField).sendKeys(Keys.ENTER);
+    }
+
+    public void clickLogin() {
+        click(loginButton);
     }
 }

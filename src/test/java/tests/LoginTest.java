@@ -18,38 +18,34 @@ public class LoginTest extends BaseTest {
         homePage.open();
         homePage.clickLoginButton();
 
-        assertTrue(loginChoiceModal.isLoaded(), "Модалка выбора способа входа не открылась");
+        assertTrue(loginChoiceModal.isLoaded(),
+                "Модалка выбора способа входа не открылась");
     }
 
     @Test
-    void shouldDisplayContinueWithEmailButtonOnLoginChoiceModal() {
+    void shouldDisplayContinueWithEmailButton() {
         HomePage homePage = new HomePage(driver);
         LoginChoiceModal loginChoiceModal = new LoginChoiceModal(driver);
 
         homePage.open();
         homePage.clickLoginButton();
 
-        assertTrue(
-                loginChoiceModal.hasContinueWithEmailButton(),
-                "В модалке не найдена кнопка Continue with email"
-        );
+        assertTrue(loginChoiceModal.hasContinueWithEmailButton(),
+                "Кнопка Continue with email не найдена");
     }
 
     @Test
-    void shouldOpenEmailLoginForm() {
+    void shouldOpenEmailStepAfterChoosingEmailLogin() {
         HomePage homePage = new HomePage(driver);
         LoginChoiceModal loginChoiceModal = new LoginChoiceModal(driver);
         LoginPage loginPage = new LoginPage(driver);
 
         homePage.open();
         homePage.clickLoginButton();
+
         loginChoiceModal.clickContinueWithEmail();
 
-        assertTrue(
-                loginPage.hasUsernameOrEmailField()
-                        || loginPage.hasPasswordField()
-                        || loginPage.hasAnyInputField(),
-                "После выбора входа по email не найдено ни одного поля ввода"
-        );
+        assertTrue(loginPage.isEmailStepLoaded(),
+                "Шаг ввода email не открылся");
     }
 }
