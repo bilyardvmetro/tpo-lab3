@@ -35,5 +35,10 @@ public class PostPageTest extends BaseTest {
         blogPage.openFirstPost();
 
         assertTrue(postPage.isLoaded(), "Пост не открылся");
+
+        assertTrue(postPage.hasHashtags(), "У поста отсутствуют хэштеги");
+        assertTrue(postPage.hasCommentButton(), "Кнопка комментариев не найдена");
+        assertTrue(postPage.hasLikeButton(), "Кнопка лайка не найдена");
+        assertTrue(postPage.hasReblogButton(), "Кнопка репоста не найдена");
     }
 }

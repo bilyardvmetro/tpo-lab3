@@ -23,6 +23,7 @@ public class LoginChoiceModal extends BasePage {
         super(driver);
     }
 
+    // CHK-06
     public boolean isLoaded() {
         return isVisible(modalContainer) || isVisible(continueWithEmailButton);
     }
@@ -35,6 +36,7 @@ public class LoginChoiceModal extends BasePage {
         return isVisible(continueWithAppleButton);
     }
 
+    // CHK-07
     public boolean hasContinueWithEmailButton() {
         return isVisible(continueWithEmailButton);
     }

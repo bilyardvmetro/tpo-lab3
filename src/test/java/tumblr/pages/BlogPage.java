@@ -30,14 +30,17 @@ public class BlogPage extends BasePage {
         super(driver);
     }
 
+    // CHK-18
     public boolean isLoaded() {
         return isVisible(blogHeader) || isVisible(timelinePosts);
     }
 
+    // CHK-18
     public boolean hasBlogTitle() {
         return isVisible(blogTitle);
     }
 
+    // CHK-19
     public boolean hasPosts() {
         return isVisible(firstPostArticle);
     }

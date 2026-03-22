@@ -28,15 +28,19 @@ public class SearchPage extends BasePage {
         super(driver);
     }
 
+    // CHK-13
     public boolean isSearchAvailable() {
         return isVisible(searchInput);
     }
 
+    // CHK-14
     public void search(String query) {
         type(searchInput, query);
+        // CHK-15
         findVisible(searchInput).sendKeys(Keys.ENTER);
     }
 
+    // CHK-16
     public boolean hasResults() {
         return isVisible(resultsContainer);
     }
@@ -53,6 +57,7 @@ public class SearchPage extends BasePage {
         return isVisible(targetBlogLink);
     }
 
+    // CHK-17
     public void openTargetBlog() {
         click(targetBlogLink);
     }

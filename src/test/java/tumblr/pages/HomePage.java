@@ -27,23 +27,28 @@ public class HomePage extends BasePage {
         super(driver);
     }
 
+    // CHK-01
     public void open() {
         driver.get(URL);
         acceptCookiesIfPresent();
     }
 
+    // CHK-04
     public boolean isLoaded() {
         return driver.getCurrentUrl().contains("tumblr");
     }
 
+    // CHK-03
     public boolean hasLoginButton() {
         return isVisible(loginButton);
     }
 
+    // CHK-02
     public boolean hasAnyPrimaryAction() {
         return hasLoginButton() || isVisible(signupButton);
     }
 
+    // CHK-05
     public void clickLoginButton() {
         acceptCookiesIfPresent();
         click(loginButton);

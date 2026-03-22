@@ -32,5 +32,6 @@ public class BlogPageTest extends BaseTest {
 
         assertTrue(blogPage.isLoaded(), "Модалка блога не открылась");
         assertTrue(blogPage.hasPosts(), "В блоге не найдено ни одного поста");
+        assertTrue(blogPage.hasBlogTitle(), "в блоге отсутствует название");
     }
 }

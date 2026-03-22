@@ -44,10 +44,12 @@ public class LoginPage extends BasePage {
         return isVisible(passwordStepContainer) && isVisible(passwordField);
     }
 
+    // CHK-08
     public void enterEmail(String email) {
         type(emailField, email);
     }
 
+    // CHK-10
     public void submitEmailWithEnter() {
         findVisible(emailField).sendKeys(Keys.ENTER);
     }
@@ -56,10 +58,12 @@ public class LoginPage extends BasePage {
         click(nextButton);
     }
 
+    // CHK-09
     public void enterPassword(String password) {
         type(passwordField, password);
     }
 
+    // CHK-10
     public void submitPasswordWithEnter() {
         findVisible(passwordField).sendKeys(Keys.ENTER);
     }
