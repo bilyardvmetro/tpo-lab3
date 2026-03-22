@@ -14,6 +14,16 @@ public class SearchPage extends BasePage {
             "//main | //div[contains(@class,'search')]"
     );
 
+    private final By blogsTab = By.xpath(
+            "//a[@id='blog' and contains(@href,'v=blog')]" +
+                    " | //a[@role='tab' and @id='blog']" +
+                    " | //a[.//div[normalize-space()='Блоги']]"
+    );
+
+    private final By targetBlogLink = By.xpath(
+            "//a[contains(@href,'yungrussia.tumblr.com')]"
+    );
+
     public SearchPage(WebDriver driver) {
         super(driver);
     }
@@ -29,5 +39,21 @@ public class SearchPage extends BasePage {
 
     public boolean hasResults() {
         return isVisible(resultsContainer);
+    }
+
+    public boolean hasBlogsTab() {
+        return isVisible(blogsTab);
+    }
+
+    public void openBlogsTab() {
+        click(blogsTab);
+    }
+
+    public boolean hasTargetBlogLink() {
+        return isVisible(targetBlogLink);
+    }
+
+    public void openTargetBlog() {
+        click(targetBlogLink);
     }
 }
